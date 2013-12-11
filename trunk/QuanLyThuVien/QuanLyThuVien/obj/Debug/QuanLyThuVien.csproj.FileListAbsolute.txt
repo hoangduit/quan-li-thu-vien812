@@ -1,0 +1,18 @@
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.exe.config
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.exe
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.pdb
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csprojResolveAssemblyReference.cache
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.Properties.Resources.resources
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.csproj.GenerateResource.Cache
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe.licenses
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe
+c:\users\hoang\documents\visual studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.pdb
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.Main.resources
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.ChuongTrinh.fmQuyen.resources
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.ChuongTrinh.fmTaiKhoan.resources
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.ChuongTrinh.fmPhucHoi.resources
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.ChuongTrinh.fmDangNhap.resources
+C:\Users\Hoang\Documents\Visual Studio 2012\Projects\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.ChuongTrinh.fmChucDanh.resources
+D:\QuanLyThuVien\QuanLyThuVien\QuanLyThuVien\bin\Debug\QuanLyThuVien.exe.config
+D:\QuanLyThuVien\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.exe
+D:\QuanLyThuVien\QuanLyThuVien\QuanLyThuVien\obj\Debug\QuanLyThuVien.pdb
