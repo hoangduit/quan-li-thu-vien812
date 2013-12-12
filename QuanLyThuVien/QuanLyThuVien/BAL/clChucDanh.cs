@@ -9,8 +9,7 @@ namespace QuanLyThuVien.BAL
     class clChucDanh
     {
         public decimal MaCD { get; set; }
-        public string TenCD { get; set; }
-
+        public string TenCD { get; set; } 
         ClConn conn = new ClConn();
         public Decimal Them(clChucDanh obj)// tra ve ma tu tang
         {
@@ -26,7 +25,7 @@ namespace QuanLyThuVien.BAL
                 {
                     try
                     {
-                        string str = " SELECT Top(1) FROM TV_ChucDanh ORDER BY  MaCD DESC";
+                        string str = " SELECT Top(1) * FROM TV_ChucDanh ORDER BY  MaCD DESC";
                         tb = conn.ExecuteQuery(str);
                         Ma = Decimal.Parse(tb.Rows[0]["MaCD"].ToString());
                     }
@@ -64,7 +63,7 @@ namespace QuanLyThuVien.BAL
         public Int32 Xoa(Decimal Ma)
         {
             int completed = 0;
-            //-1: Error; 0: Exist; 1: Success 
+            //2: Error; 0: Exist; 1: Success 
             try
             {
                 string Str = " DELETE  TV_ChucDanh WHERE MaCD =" + Ma.ToString();
@@ -82,7 +81,7 @@ namespace QuanLyThuVien.BAL
             }
             catch (Exception ex)
             {
-                completed = -1;
+                completed = 2;
                 throw new Exception(ex.Message);
             }
             return completed;
@@ -105,7 +104,7 @@ namespace QuanLyThuVien.BAL
             DataTable tb = new DataTable();
             try
             {
-                string str = " SELECT * FROM TV_ChucDanh ";
+                string str = " SELECT Row_number() OVER( ORDER BY MaCD DESC) STT, MaCD= 'MCD00' + convert( nvarchar(200),MaCD),TenCD FROM TV_ChucDanh ";
                 tb = conn.ExecuteQuery(str);
             }
             catch (Exception ex)
@@ -149,7 +148,6 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
             return obj;
-        }
-
+        } 
     }
 }
