@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
+using DevExpress.XtraEditors;
 namespace QuanLyThuVien.BAL
 {
     static class Ham
@@ -26,6 +27,53 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
 
+        }
+        static public void LoadBnt(Int16 TrangThai, PanelControl KhungThem, SimpleButton bntThem, SimpleButton bntLuu, SimpleButton bntXoa, SimpleButton bntSua, SimpleButton bntLamlai, Panel pnThongBao, LabelControl lbThongBao)
+        {
+
+            pnThongBao.BackColor = System.Drawing.Color.DodgerBlue;
+            if (TrangThai == 0)
+            {
+                pnThongBao.Visible = false;
+                KhungThem.Visible = false;
+                bntSua.Enabled = true;
+                bntThem.Enabled = true;
+                bntXoa.Enabled = false;
+                bntLuu.Enabled = false;
+            }
+            if (TrangThai == 1)
+            {
+                pnThongBao.Visible = true;
+                lbThongBao.Text = "Bạn đang thêm";
+                KhungThem.Visible = true;
+                bntSua.Enabled = true;
+                bntThem.Enabled = false;
+                bntXoa.Enabled = false;
+                bntLuu.Enabled = true;
+            }
+            if (TrangThai == 2)
+            {
+                pnThongBao.Visible = true;
+                lbThongBao.Text = "Bạn đang sửa";
+                KhungThem.Visible = true;
+                bntSua.Enabled = false;
+                bntThem.Enabled = true;
+                bntXoa.Enabled = false;
+                bntLuu.Enabled = true;
+            }
+
+        }
+        static public void KhungTB(int TrangThai, String str, Panel pnThongBao, LabelControl lbThongBao)
+        {
+            pnThongBao.Visible = true;
+            if (TrangThai == 1)// Thành Công
+                pnThongBao.BackColor = System.Drawing.Color.Blue;
+            if (TrangThai == 2)// Thất Bại
+                pnThongBao.BackColor = System.Drawing.Color.IndianRed;
+            if (TrangThai == 3)// Cảnh Báo 
+                pnThongBao.BackColor = System.Drawing.Color.DarkOrange;
+            lbThongBao.Appearance.ForeColor = System.Drawing.Color.White;
+            lbThongBao.Text = str;
         }
     }
 }
