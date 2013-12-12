@@ -29,27 +29,29 @@
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.bntDN = new DevExpress.XtraEditors.SimpleButton();
+            this.bntThoat = new DevExpress.XtraEditors.SimpleButton();
+            this.txtMK = new DevExpress.XtraEditors.TextEdit();
+            this.txtTK = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.lbThongBao = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTK.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.simpleButton2);
-            this.groupControl1.Controls.Add(this.simpleButton1);
-            this.groupControl1.Controls.Add(this.textEdit2);
-            this.groupControl1.Controls.Add(this.textEdit1);
+            this.groupControl1.Controls.Add(this.bntDN);
+            this.groupControl1.Controls.Add(this.bntThoat);
+            this.groupControl1.Controls.Add(this.txtMK);
+            this.groupControl1.Controls.Add(this.txtTK);
             this.groupControl1.Controls.Add(this.labelControl2);
+            this.groupControl1.Controls.Add(this.lbThongBao);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.pictureEdit1);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -59,14 +61,38 @@
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Đăng Nhập";
             // 
-            // labelControl1
+            // bntDN
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelControl1.Location = new System.Drawing.Point(155, 48);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(57, 16);
-            this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "Tài Khoản";
+            this.bntDN.Location = new System.Drawing.Point(182, 149);
+            this.bntDN.Name = "bntDN";
+            this.bntDN.Size = new System.Drawing.Size(75, 23);
+            this.bntDN.TabIndex = 6;
+            this.bntDN.Text = "Đăng Nhập";
+            this.bntDN.Click += new System.EventHandler(this.bntDN_Click);
+            // 
+            // bntThoat
+            // 
+            this.bntThoat.Location = new System.Drawing.Point(276, 149);
+            this.bntThoat.Name = "bntThoat";
+            this.bntThoat.Size = new System.Drawing.Size(75, 23);
+            this.bntThoat.TabIndex = 5;
+            this.bntThoat.Text = "Thoát";
+            this.bntThoat.Click += new System.EventHandler(this.bntThoat_Click);
+            // 
+            // txtMK
+            // 
+            this.txtMK.Location = new System.Drawing.Point(182, 120);
+            this.txtMK.Name = "txtMK";
+            this.txtMK.Properties.PasswordChar = '*';
+            this.txtMK.Size = new System.Drawing.Size(169, 20);
+            this.txtMK.TabIndex = 4;
+            // 
+            // txtTK
+            // 
+            this.txtTK.Location = new System.Drawing.Point(182, 68);
+            this.txtTK.Name = "txtTK";
+            this.txtTK.Size = new System.Drawing.Size(169, 20);
+            this.txtTK.TabIndex = 3;
             // 
             // labelControl2
             // 
@@ -77,36 +103,14 @@
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Mật Khẩu";
             // 
-            // textEdit1
+            // labelControl1
             // 
-            this.textEdit1.Location = new System.Drawing.Point(182, 68);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Size = new System.Drawing.Size(169, 20);
-            this.textEdit1.TabIndex = 3;
-            // 
-            // textEdit2
-            // 
-            this.textEdit2.Location = new System.Drawing.Point(182, 120);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.PasswordChar = '*';
-            this.textEdit2.Size = new System.Drawing.Size(169, 20);
-            this.textEdit2.TabIndex = 4;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Location = new System.Drawing.Point(276, 149);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 5;
-            this.simpleButton1.Text = "Thoát";
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Location = new System.Drawing.Point(182, 149);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 6;
-            this.simpleButton2.Text = "Đăng Nhập";
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl1.Location = new System.Drawing.Point(155, 46);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(57, 16);
+            this.labelControl1.TabIndex = 1;
+            this.labelControl1.Text = "Tài Khoản";
             // 
             // pictureEdit1
             // 
@@ -119,6 +123,17 @@
             this.pictureEdit1.Size = new System.Drawing.Size(120, 148);
             this.pictureEdit1.TabIndex = 0;
             // 
+            // lbThongBao
+            // 
+            this.lbThongBao.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.lbThongBao.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbThongBao.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.lbThongBao.Location = new System.Drawing.Point(155, 27);
+            this.lbThongBao.Name = "lbThongBao";
+            this.lbThongBao.Size = new System.Drawing.Size(57, 16);
+            this.lbThongBao.TabIndex = 1;
+            this.lbThongBao.Text = "Tài Khoản";
+            // 
             // fmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,11 +142,12 @@
             this.Controls.Add(this.groupControl1);
             this.Name = "fmDangNhap";
             this.Text = "fmDangNhap";
+            this.Load += new System.EventHandler(this.fmDangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMK.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTK.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -140,12 +156,13 @@
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.SimpleButton bntDN;
+        private DevExpress.XtraEditors.SimpleButton bntThoat;
+        private DevExpress.XtraEditors.TextEdit txtMK;
+        private DevExpress.XtraEditors.TextEdit txtTK;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraEditors.LabelControl lbThongBao;
     }
 }

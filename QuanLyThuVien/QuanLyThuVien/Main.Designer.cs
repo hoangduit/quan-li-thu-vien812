@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SuperToolTip superToolTip3 = new DevExpress.Utils.SuperToolTip();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem5 = new DevExpress.Utils.ToolTipTitleItem();
-            DevExpress.Utils.ToolTipItem toolTipItem3 = new DevExpress.Utils.ToolTipItem();
-            DevExpress.Utils.ToolTipSeparatorItem toolTipSeparatorItem3 = new DevExpress.Utils.ToolTipSeparatorItem();
-            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem6 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.SuperToolTip superToolTip1 = new DevExpress.Utils.SuperToolTip();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem1 = new DevExpress.Utils.ToolTipTitleItem();
+            DevExpress.Utils.ToolTipItem toolTipItem1 = new DevExpress.Utils.ToolTipItem();
+            DevExpress.Utils.ToolTipSeparatorItem toolTipSeparatorItem1 = new DevExpress.Utils.ToolTipSeparatorItem();
+            DevExpress.Utils.ToolTipTitleItem toolTipTitleItem2 = new DevExpress.Utils.ToolTipTitleItem();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bntDX = new DevExpress.XtraBars.BarButtonItem();
             this.bntThoat = new DevExpress.XtraBars.BarButtonItem();
@@ -48,7 +48,7 @@
             this.txtQuyen = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barStaticItem2 = new DevExpress.XtraBars.BarStaticItem();
-            this.barStaticItem8 = new DevExpress.XtraBars.BarStaticItem();
+            this.txtThoiGian = new DevExpress.XtraBars.BarStaticItem();
             this.bntLoaiSach = new DevExpress.XtraBars.BarButtonItem();
             this.bntNgonNgu = new DevExpress.XtraBars.BarButtonItem();
             this.bntNhomSach = new DevExpress.XtraBars.BarButtonItem();
@@ -80,10 +80,10 @@
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bntDoiMatKhau = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ribbon
@@ -107,7 +107,7 @@
             this.txtQuyen,
             this.barStaticItem1,
             this.barStaticItem2,
-            this.barStaticItem8,
+            this.txtThoiGian,
             this.bntLoaiSach,
             this.bntNgonNgu,
             this.bntNhomSach,
@@ -119,9 +119,10 @@
             this.bntSach,
             this.bntTimSach,
             this.bntBaoCaoSach,
-            this.bntChucDanh});
+            this.bntChucDanh,
+            this.bntDoiMatKhau});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 37;
+            this.ribbon.MaxItemId = 38;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -136,23 +137,23 @@
             // bntDX
             // 
             this.bntDX.Caption = "Đăng Xuất";
-            superToolTip3.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
-            toolTipTitleItem5.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipTitleItem5.Appearance.Options.UseImage = true;
-            toolTipTitleItem5.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipItem3.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipItem3.Appearance.Options.UseImage = true;
-            toolTipItem3.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipItem3.LeftIndent = 6;
-            toolTipTitleItem6.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipTitleItem6.Appearance.Options.UseImage = true;
-            toolTipTitleItem6.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
-            toolTipTitleItem6.LeftIndent = 6;
-            superToolTip3.Items.Add(toolTipTitleItem5);
-            superToolTip3.Items.Add(toolTipItem3);
-            superToolTip3.Items.Add(toolTipSeparatorItem3);
-            superToolTip3.Items.Add(toolTipTitleItem6);
-            this.bntDX.DropDownSuperTip = superToolTip3;
+            superToolTip1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.True;
+            toolTipTitleItem1.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipTitleItem1.Appearance.Options.UseImage = true;
+            toolTipTitleItem1.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipItem1.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipItem1.Appearance.Options.UseImage = true;
+            toolTipItem1.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipItem1.LeftIndent = 6;
+            toolTipTitleItem2.Appearance.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipTitleItem2.Appearance.Options.UseImage = true;
+            toolTipTitleItem2.Image = global::QuanLyThuVien.Properties.Resources.DangXuat;
+            toolTipTitleItem2.LeftIndent = 6;
+            superToolTip1.Items.Add(toolTipTitleItem1);
+            superToolTip1.Items.Add(toolTipItem1);
+            superToolTip1.Items.Add(toolTipSeparatorItem1);
+            superToolTip1.Items.Add(toolTipTitleItem2);
+            this.bntDX.DropDownSuperTip = superToolTip1;
             this.bntDX.Glyph = global::QuanLyThuVien.Properties.Resources.DangXuat;
             this.bntDX.GlyphDisabled = global::QuanLyThuVien.Properties.Resources.DangXuat;
             this.bntDX.Id = 2;
@@ -186,7 +187,7 @@
             // 
             // bntTaiKhoan
             // 
-            this.bntTaiKhoan.Caption = "Tài Khoản";
+            this.bntTaiKhoan.Caption = "Người Dùng";
             this.bntTaiKhoan.Id = 9;
             this.bntTaiKhoan.Name = "bntTaiKhoan";
             this.bntTaiKhoan.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
@@ -213,7 +214,7 @@
             // 
             // bntPhanQuyen
             // 
-            this.bntPhanQuyen.Caption = "Phân Quyền";
+            this.bntPhanQuyen.Caption = "Quyền";
             this.bntPhanQuyen.Id = 14;
             this.bntPhanQuyen.Name = "bntPhanQuyen";
             this.bntPhanQuyen.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
@@ -279,14 +280,14 @@
             this.barStaticItem2.Name = "barStaticItem2";
             this.barStaticItem2.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
-            // barStaticItem8
+            // txtThoiGian
             // 
-            this.barStaticItem8.Caption = "12:20:23";
-            this.barStaticItem8.Id = 24;
-            this.barStaticItem8.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Navy;
-            this.barStaticItem8.ItemAppearance.Normal.Options.UseForeColor = true;
-            this.barStaticItem8.Name = "barStaticItem8";
-            this.barStaticItem8.TextAlignment = System.Drawing.StringAlignment.Near;
+            this.txtThoiGian.Caption = "12:20:23";
+            this.txtThoiGian.Id = 24;
+            this.txtThoiGian.ItemAppearance.Normal.ForeColor = System.Drawing.Color.Navy;
+            this.txtThoiGian.ItemAppearance.Normal.Options.UseForeColor = true;
+            this.txtThoiGian.Name = "txtThoiGian";
+            this.txtThoiGian.TextAlignment = System.Drawing.StringAlignment.Near;
             // 
             // bntLoaiSach
             // 
@@ -383,6 +384,7 @@
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.gpHeThong,
+            this.ribbonPageGroup8,
             this.gpCoSoDuLieu});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Hệ Thống";
@@ -392,9 +394,7 @@
             this.gpHeThong.ItemLinks.Add(this.bntDN);
             this.gpHeThong.ItemLinks.Add(this.bntDX);
             this.gpHeThong.ItemLinks.Add(this.bntThoat);
-            this.gpHeThong.ItemLinks.Add(this.bntTaiKhoan);
-            this.gpHeThong.ItemLinks.Add(this.bntPhanQuyen);
-            this.gpHeThong.ItemLinks.Add(this.bntChucDanh);
+            this.gpHeThong.ItemLinks.Add(this.bntDoiMatKhau);
             this.gpHeThong.Name = "gpHeThong";
             this.gpHeThong.Text = "Hệ Thống";
             // 
@@ -489,7 +489,7 @@
             this.ribbonStatusBar.ItemLinks.Add(this.txtQuyen);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem1);
             this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem2);
-            this.ribbonStatusBar.ItemLinks.Add(this.barStaticItem8);
+            this.ribbonStatusBar.ItemLinks.Add(this.txtThoiGian);
             this.ribbonStatusBar.Location = new System.Drawing.Point(0, 421);
             this.ribbonStatusBar.Name = "ribbonStatusBar";
             this.ribbonStatusBar.Ribbon = this.ribbon;
@@ -530,34 +530,26 @@
             this.xtraTabControl1.HeaderButtonsShowMode = DevExpress.XtraTab.TabButtonShowMode.Always;
             this.xtraTabControl1.Location = new System.Drawing.Point(0, 144);
             this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
             this.xtraTabControl1.Size = new System.Drawing.Size(744, 277);
             this.xtraTabControl1.TabIndex = 2;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1});
             this.xtraTabControl1.CloseButtonClick += new System.EventHandler(this.xtraTabControl1_CloseButtonClick);
             this.xtraTabControl1.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.xtraTabControl1_ControlAdded);
             // 
-            // xtraTabPage1
+            // ribbonPageGroup8
             // 
-            this.xtraTabPage1.Appearance.Header.BackColor = System.Drawing.Color.Silver;
-            this.xtraTabPage1.Appearance.Header.BackColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.xtraTabPage1.Appearance.Header.Options.UseBackColor = true;
-            this.xtraTabPage1.Appearance.HeaderActive.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.xtraTabPage1.Appearance.HeaderActive.BackColor2 = System.Drawing.Color.Silver;
-            this.xtraTabPage1.Appearance.HeaderActive.Options.UseBackColor = true;
-            this.xtraTabPage1.Appearance.HeaderDisabled.BackColor = System.Drawing.Color.Gray;
-            this.xtraTabPage1.Appearance.HeaderDisabled.BackColor2 = System.Drawing.Color.Gray;
-            this.xtraTabPage1.Appearance.HeaderDisabled.Options.UseBackColor = true;
-            this.xtraTabPage1.Appearance.HeaderHotTracked.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.xtraTabPage1.Appearance.HeaderHotTracked.BackColor2 = System.Drawing.Color.Gray;
-            this.xtraTabPage1.Appearance.HeaderHotTracked.Options.UseBackColor = true;
-            this.xtraTabPage1.Appearance.PageClient.BackColor = System.Drawing.Color.Tomato;
-            this.xtraTabPage1.Appearance.PageClient.BackColor2 = System.Drawing.Color.Silver;
-            this.xtraTabPage1.Appearance.PageClient.Options.UseBackColor = true;
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(738, 249);
-            this.xtraTabPage1.Text = "xtraTabPage1";
+            this.ribbonPageGroup8.ItemLinks.Add(this.bntTaiKhoan);
+            this.ribbonPageGroup8.ItemLinks.Add(this.bntChucDanh);
+            this.ribbonPageGroup8.ItemLinks.Add(this.bntPhanQuyen);
+            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
+            this.ribbonPageGroup8.Text = "Người Dùng";
+            // 
+            // bntDoiMatKhau
+            // 
+            this.bntDoiMatKhau.Caption = "Đổi Mật Khẩu";
+            this.bntDoiMatKhau.Id = 37;
+            this.bntDoiMatKhau.Name = "bntDoiMatKhau";
+            this.bntDoiMatKhau.RibbonStyle = ((DevExpress.XtraBars.Ribbon.RibbonItemStyles)(((DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText) 
+            | DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithoutText)));
             // 
             // Main
             // 
@@ -571,9 +563,9 @@
             this.Ribbon = this.ribbon;
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -607,7 +599,7 @@
         private DevExpress.XtraBars.BarStaticItem txtQuyen;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
         private DevExpress.XtraBars.BarStaticItem barStaticItem2;
-        private DevExpress.XtraBars.BarStaticItem barStaticItem8;
+        private DevExpress.XtraBars.BarStaticItem txtThoiGian;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage6;
         private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
         private DevExpress.XtraBars.BarButtonItem bntLoaiSach;
@@ -627,6 +619,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem bntChucDanh;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.BarButtonItem bntDoiMatKhau;
     }
 }
