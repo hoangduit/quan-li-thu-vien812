@@ -8,8 +8,8 @@ using System.Windows.Forms;
 using DevExpress.XtraBars;
 using QuanLyThuVien.ChuongTrinh;
 using QuanLyThuVien.BAL;
-
-
+using QuanLyThuVien.FromCon;
+using System.IO;
 namespace QuanLyThuVien
 {
     public partial class Main : DevExpress.XtraBars.Ribbon.RibbonForm
@@ -20,11 +20,22 @@ namespace QuanLyThuVien
             InitializeComponent();
 
         }
+
+        public void layUser(Decimal MaSo)
+        {
+            clCanBo clCanBo = new clCanBo(); 
+            DataTable tb = clCanBo.LayCB( MaSo);
+            txtHoTen.Caption = tb.Rows[0]["TenCB"].ToString();
+            txtThoiGian.Caption = DateTime.Now.ToString();
+            txtQuyen.Caption = tb.Rows[0]["Admin"].ToString();
+            Ham.ThemLuocSu(MaSo, txtHoTen.Caption+" đã đăng nhập", "Đăng nhập", "");
+        }
         private void bntDN_ItemClick(object sender, ItemClickEventArgs e)
         {
             fmDangNhap frm = new fmDangNhap();
+            frm.layUser = new fmDangNhap.GetString(layUser);
             frm.ShowDialog();
-        }
+        } 
         private void bntDX_ItemClick(object sender, ItemClickEventArgs e)
         {
 
@@ -79,10 +90,13 @@ namespace QuanLyThuVien
             xtraTabControl1.SelectedTabPageIndex = xtraTabControl1.TabPages.Count - 1;
         }
         #endregion
-         
         private void bntChucDanh_ItemClick(object sender, ItemClickEventArgs e)
         {
             this.CheckTap(bntChucDanh.Caption.ToString(), new fmChucDanh());
+        } 
+        private void Main_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

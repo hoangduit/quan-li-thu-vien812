@@ -11,8 +11,7 @@ using QuanLyThuVien.BAL;
 namespace QuanLyThuVien.ChuongTrinh
 {
     public partial class fmChucDanh : UserControl
-    {
-
+    { 
         public fmChucDanh()
         {
             InitializeComponent();
@@ -36,7 +35,7 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         private void bntSua_Click(object sender, EventArgs e)
         {
-            TrangThai = 2;
+            TrangThai = 1;
             this.LoadTxt();
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
         }
@@ -120,8 +119,6 @@ namespace QuanLyThuVien.ChuongTrinh
             }
             if (Kq == 3)
                 Ham.KhungTB(3, "Đang được sử dụng không thể xóa", pnThongBao, lbThongBao);
-        }
-
-
+        } 
     }
 }

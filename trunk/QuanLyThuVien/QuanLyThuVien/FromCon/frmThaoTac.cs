@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace QuanLyThuVien.ChuongTrinh
+namespace QuanLyThuVien.FromCon
 {
-    public partial class fmDangNhap : Form
+    public partial class frmThaoTac : Form
     {
-        public fmDangNhap()
+        public frmThaoTac()
         {
             InitializeComponent();
         }

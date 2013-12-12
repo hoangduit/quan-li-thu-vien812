@@ -9,6 +9,8 @@ namespace QuanLyThuVien.BAL
 {
     static class Ham
     {
+        static public Decimal MaNV { get; set; }
+        static public Decimal MaCB { get; set; } 
         static public void ThemLuocSu(Decimal MaCB, String TenFrom, String ThaoTac, String TomTac)
         {
             try
@@ -72,6 +74,9 @@ namespace QuanLyThuVien.BAL
                 pnThongBao.BackColor = System.Drawing.Color.IndianRed;
             if (TrangThai == 3)// Cảnh Báo 
                 pnThongBao.BackColor = System.Drawing.Color.DarkOrange;
+            if (TrangThai == 4)// Khác màu đất
+                pnThongBao.BackColor = System.Drawing.Color.DarkGray;
+            
             lbThongBao.Appearance.ForeColor = System.Drawing.Color.White;
             lbThongBao.Text = str;
         }
