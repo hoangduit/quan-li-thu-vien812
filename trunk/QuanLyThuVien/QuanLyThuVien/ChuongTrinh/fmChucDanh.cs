@@ -18,7 +18,7 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         Int16 TrangThai = 0;
         Decimal Ma = 0;
-        Decimal MaNV = 1;
+        Decimal MaNV = Ham.MaNV ;
         clChucDanh clChucDanh = new clChucDanh();
         clChucDanh ojp = new clChucDanh();
         private void fmChucDanh_Load(object sender, EventArgs e)

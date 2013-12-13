@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;  
+using System.Threading.Tasks;
 using System.Data;
 namespace QuanLyThuVien.BAL
 {
@@ -67,7 +67,7 @@ namespace QuanLyThuVien.BAL
             try
             {
                 string Str = "UPDATE TV_ThaoTac SET  MaFrm =@MaFrm, MaCB=@MaCB, ToanQuyen=@ToanQuyen, ThemTT=@ThemTT, SuaTT=@SuaTT, XoaTT=@XoaTT, XemTT=@XemTT, TimTT=@TimTT, InTT=@InTT, Khoa=@Khoa  WHERE MaTT = @MaTT ";
-                conn.AddParameter("@MaTT", obj.MaTT); 
+                conn.AddParameter("@MaTT", obj.MaTT);
                 conn.AddParameter("@MaFrm", obj.MaFrm);
                 conn.AddParameter("@MaCB", obj.MaCB);
                 conn.AddParameter("@ToanQuyen", obj.ToanQuyen);
@@ -126,15 +126,15 @@ namespace QuanLyThuVien.BAL
             }
             return (tb.Rows.Count > 0);
         }
-        public DataTable LayDS()
+        public DataTable LayDS(Decimal MaCB)
         {
             DataTable tb = new DataTable();
             try
             {
-                string str = " SELECT        Row_number() OVER( ORDER BY MaTT DESC) STT, MaTT= 'MTT00' + convert( nvarchar(200),MaTT),   TV_ThaoTac.ToanQuyen, TV_ThaoTac.ThemTT, TV_ThaoTac.SuaTT, TV_ThaoTac.XoaTT, TV_ThaoTac.XemTT, TV_ThaoTac.TimTT, TV_ThaoTac.InTT, "+
-                                           " TV_ThaoTac.Khoa, TV_CanBo.TenCB, TV_From.TenGoi, TV_ThaoTac.MaTT "+
+                string str = " SELECT        Row_number() OVER( ORDER BY MaTT DESC) STT, MaTT= 'MTT00' + convert( nvarchar(200),MaTT),   TV_ThaoTac.ToanQuyen, TV_ThaoTac.ThemTT, TV_ThaoTac.SuaTT, TV_ThaoTac.XoaTT, TV_ThaoTac.XemTT, TV_ThaoTac.TimTT, TV_ThaoTac.InTT, " +
+                                           " TV_ThaoTac.Khoa, TV_CanBo.TenCB, TV_From.TenGoi, TV_ThaoTac.MaTT " +
                              " FROM          TV_CanBo RIGHT OUTER JOIN " +
-                                           " TV_ThaoTac LEFT OUTER JOIN   TV_From ON TV_ThaoTac.MaFrm = TV_From.MaFrm ON TV_CanBo.MaCB = TV_ThaoTac.MaCB ";
+                                           " TV_ThaoTac LEFT OUTER JOIN   TV_From ON TV_ThaoTac.MaFrm = TV_From.MaFrm ON TV_CanBo.MaCB = TV_ThaoTac.MaCB WHERE TV_ThaoTac.MaCB=" + MaCB;
                 tb = conn.ExecuteQuery(str);
             }
             catch (Exception ex)
@@ -186,8 +186,33 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
             return obj;
-        } 
-
-
+        }
+        public Boolean KiemTraFrom(Decimal From, Decimal MaNV)
+        {
+            DataTable tb = new DataTable();
+            try
+            {
+                tb = conn.ExecuteQuery("SELECT * FROM TV_ThaoTac WHERE MaFrm=" + From + " AND MaCB=" + MaNV);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return (tb.Rows.Count > 0);
+        }
+        public DataTable LayDS_From()
+        {
+            DataTable tb = new DataTable();
+            try
+            {
+                string str = " SELECT  Row_number() OVER( ORDER BY MaFrm DESC) STT, MaFrm= 'MF00' + convert( nvarchar(200),MaFrm), TenGoi FROM TV_From ";
+                tb = conn.ExecuteQuery(str);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tb;
+        }
     }
 }
