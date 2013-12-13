@@ -10,7 +10,8 @@ namespace QuanLyThuVien.BAL
     static class Ham
     {
         static public Decimal MaNV { get; set; }
-        static public Decimal MaCB { get; set; } 
+        static public Decimal MaCB { get; set; }
+        static public Decimal qAdmin { get; set; } 
         static public void ThemLuocSu(Decimal MaCB, String TenFrom, String ThaoTac, String TomTac)
         {
             try
@@ -24,9 +25,9 @@ namespace QuanLyThuVien.BAL
                 ojpLS.TomTac = TomTac;
                 LuocSu = ojpLS.Them(ojpLS);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
 
         }

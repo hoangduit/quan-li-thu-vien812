@@ -21,7 +21,7 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         Int16 TrangThai = 0;
         Decimal Ma = 0;
-        Decimal MaNV = 1;
+        Decimal MaNV = Ham.MaNV;
         clCanBo clCanBo = new clCanBo();
         clCanBo ojp = new clCanBo();
         private void fmTaiKhoan_Load(object sender, EventArgs e)
@@ -32,6 +32,7 @@ namespace QuanLyThuVien.ChuongTrinh
             this.LoadCD();
             this.LoadQ();
             Ham.MaNV = MaNV;
+            this.LoadQuyen();
             bntPhanQuyen.Enabled = false;
         }
         private void bntChucDanh_Click(object sender, EventArgs e)
@@ -61,6 +62,18 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         private void bntLuu_Click(object sender, EventArgs e)
         {
+            if (txtMaSo.Text == "")
+            {
+                Ham.KhungTB(3, "Mã số không được rổng", pnThongBao, lbThongBao);
+                txtMaSo.Focus();
+                return;
+            }
+            if (txtHoTen.Text == "")
+            {
+                Ham.KhungTB(3, "Họ tên không được rổng", pnThongBao, lbThongBao);
+                txtHoTen.Focus();
+                return;
+            }
             if (TrangThai == 1)
                 this.Them();
             if (TrangThai == 2)
@@ -79,7 +92,7 @@ namespace QuanLyThuVien.ChuongTrinh
             {
                 Ham.MaCB = Ma;
                 frmThaoTac frm = new frmThaoTac();
-                frm.ShowDialog(); 
+                frm.ShowDialog();
             }
         }
         private void bntTaiLai_Click(object sender, EventArgs e)
@@ -88,6 +101,8 @@ namespace QuanLyThuVien.ChuongTrinh
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
             this.LoadGV();
             this.XoaTxt();
+            this.LoadQuyen();
+            Ma = 0;
         }
         private void gridView1_RowClick(object sender, DevExpress.XtraGrid.Views.Grid.RowClickEventArgs e)
         {
@@ -121,8 +136,8 @@ namespace QuanLyThuVien.ChuongTrinh
             txtDiaChi.Text = ojp.DiaChi;
             txtSDT.Text = ojp.SDT;
             txtMail.Text = ojp.Mail;
-            cbbChucDan.EditValue = "MCD00"+ojp.MaCD;
-            cbbQuyen.EditValue = "MQ00"+ojp.MaQuyen;
+            cbbChucDan.EditValue = "MCD00" + ojp.MaCD;
+            cbbQuyen.EditValue = "MQ00" + ojp.MaQuyen;
             txtMaSo.Text = ojp.TaiKhoan;
             txtMaSo.Text = ojp.MatKhau;
             cbTrangThai.Checked = ojp.TrangThai;
@@ -162,61 +177,74 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         private void Them()
         {
-            Boolean GT = false;
-            clCanBo.MaSoCB = txtMaSo.Text.Trim() ;
-            clCanBo.TenCB = txtHoTen.Text;
-            clCanBo.DiaChi = txtDiaChi.Text;
-            clCanBo.SDT = txtSDT.Text;
-            clCanBo.Mail = txtMail.Text;
-            String MaSo = "";
-            MaSo = cbbChucDan.EditValue.ToString () ;
-            clCanBo.MaCD = Convert.ToDecimal(MaSo .Replace ("MCD00",""));
-            MaSo = cbbQuyen.EditValue.ToString();
-            clCanBo.MaQuyen = Convert.ToDecimal(MaSo.Replace("MQ00", ""));
 
-            clCanBo.TaiKhoan = txtMaSo.Text;
-            clCanBo.MatKhau = txtMaSo.Text;
-            clCanBo.TrangThai = cbTrangThai.Checked;
-            if (cbbGioiTinh.SelectedText == "Nam") GT = true;
-            else GT = false;
-            clCanBo.GioiTinh = GT;
-            if (clCanBo.KT_MaSoCB(clCanBo.MaSoCB.ToString ().Trim ()))
-                Ham.KhungTB(3, "Mã số đã tồn tại! ", pnThongBao, lbThongBao);
-            if (clCanBo.Them(clCanBo) > 0)
+            try
             {
-                Ham.KhungTB(1, "Thêm thành công", pnThongBao, lbThongBao);
-                Ham.ThemLuocSu(MaNV, "Thêm nhân viên: " + txtHoTen.Text, "Thêm", "");
+                Boolean GT = false;
+                clCanBo.MaSoCB = txtMaSo.Text.Trim();
+                clCanBo.TenCB = txtHoTen.Text;
+                clCanBo.DiaChi = txtDiaChi.Text;
+                clCanBo.SDT = txtSDT.Text;
+                clCanBo.Mail = txtMail.Text;
+                String MaSo = "";
+                MaSo = cbbChucDan.EditValue.ToString();
+                clCanBo.MaCD = Convert.ToDecimal(MaSo.Replace("MCD00", ""));
+                MaSo = cbbQuyen.EditValue.ToString();
+                clCanBo.MaQuyen = Convert.ToDecimal(MaSo.Replace("MQ00", ""));
+                clCanBo.TaiKhoan = txtMaSo.Text;
+                clCanBo.MatKhau = txtMaSo.Text;
+                clCanBo.TrangThai = cbTrangThai.Checked;
+                if (cbbGioiTinh.SelectedText == "Nam") GT = true;
+                else GT = false;
+                clCanBo.GioiTinh = GT;
+                if (clCanBo.KT_MaSoCB(clCanBo.MaSoCB.ToString().Trim()))
+                    Ham.KhungTB(3, "Mã số đã tồn tại! ", pnThongBao, lbThongBao);
+                if (clCanBo.Them(clCanBo) > 0)
+                {
+                    Ham.KhungTB(1, "Thêm thành công", pnThongBao, lbThongBao);
+                    Ham.ThemLuocSu(MaNV, "Thêm nhân viên: " + txtHoTen.Text, "Thêm", "");
+                }
+                else
+                    Ham.KhungTB(2, "Thêm thất bại", pnThongBao, lbThongBao);
             }
-            else
-                Ham.KhungTB(2, "Thêm thất bại", pnThongBao, lbThongBao);
+            catch (Exception)
+            { Ham.KhungTB(3, "Vui lòng nhập thông tin đầy đủ", pnThongBao, lbThongBao); }
+
         }
         private void Sua()
         {
-            Boolean GT = false;
-            clCanBo.MaCB = Ma;
-            clCanBo.MaSoCB = txtMaSo.Text;
-            clCanBo.TenCB = txtHoTen.Text;
-            clCanBo.DiaChi = txtDiaChi.Text;
-            clCanBo.SDT = txtSDT.Text;
-            clCanBo.Mail = txtMail.Text;
-            String MaSo = "";
-            MaSo = cbbChucDan.EditValue.ToString();
-            clCanBo.MaCD = Convert.ToDecimal(MaSo.Replace("MCD00", ""));
-            MaSo = cbbQuyen.EditValue.ToString();
-            clCanBo.MaQuyen = Convert.ToDecimal(MaSo.Replace("MQ00", ""));
-            clCanBo.TaiKhoan = txtMaSo.Text;
-            clCanBo.MatKhau = txtMaSo.Text;
-            clCanBo.TrangThai = cbTrangThai.Checked;
-            if (cbbGioiTinh.SelectedText == "Nam") GT = true;
-            else GT = false;
-            clCanBo.GioiTinh = GT;
-            if (clCanBo.Sua(clCanBo) == true)
+            try
             {
-                Ham.KhungTB(1, "Thay đổi thành công", pnThongBao, lbThongBao);
-                Ham.ThemLuocSu(MaNV, "Thay đổi nhân viên với mã: " + txtMaSo.Text, "Thay đổi", "");
+
+                Boolean GT = false;
+                clCanBo.MaCB = Ma;
+                clCanBo.MaSoCB = txtMaSo.Text;
+                clCanBo.TenCB = txtHoTen.Text;
+                clCanBo.DiaChi = txtDiaChi.Text;
+                clCanBo.SDT = txtSDT.Text;
+                clCanBo.Mail = txtMail.Text;
+                String MaSo = "";
+                MaSo = cbbChucDan.EditValue.ToString();
+                clCanBo.MaCD = Convert.ToDecimal(MaSo.Replace("MCD00", ""));
+                MaSo = cbbQuyen.EditValue.ToString();
+                clCanBo.MaQuyen = Convert.ToDecimal(MaSo.Replace("MQ00", ""));
+                clCanBo.TaiKhoan = txtMaSo.Text;
+                clCanBo.MatKhau = txtMaSo.Text;
+                clCanBo.TrangThai = cbTrangThai.Checked;
+                if (cbbGioiTinh.SelectedText == "Nam") GT = true;
+                else GT = false;
+                clCanBo.GioiTinh = GT;
+                if (clCanBo.Sua(clCanBo) == true)
+                {
+                    Ham.KhungTB(1, "Thay đổi thành công", pnThongBao, lbThongBao);
+                    Ham.ThemLuocSu(MaNV, "Thay đổi nhân viên với mã: " + txtMaSo.Text, "Thay đổi", "");
+                }
+                else
+                    Ham.KhungTB(2, "Thay đổi thất bại", pnThongBao, lbThongBao);
             }
-            else
-                Ham.KhungTB(2, "Thay đổi thất bại", pnThongBao, lbThongBao);
+            catch (Exception)
+            { Ham.KhungTB(3, "Vui lòng nhập thông tin đầy đủ", pnThongBao, lbThongBao); }
+
         }
         private void Xoa()
         {
@@ -233,6 +261,26 @@ namespace QuanLyThuVien.ChuongTrinh
             }
             if (Kq == 3)
                 Ham.KhungTB(3, "Đang được sử dụng không thể xóa", pnThongBao, lbThongBao);
-        } 
+        }
+        private void LoadQuyen()
+        {
+
+            clThaoTac PQ = new clThaoTac();
+            try
+            {
+                PQ = PQ.Lay_From(5, Ham.MaNV);
+                if (PQ.ToanQuyen != true && Ham.qAdmin != 1)
+                {
+                    if (PQ.ThemTT == false) bntThem.Visible = false;
+                    if (PQ.SuaTT == false) bntSua.Visible = false;
+                    if (PQ.XoaTT == false) bntXoa.Visible = false;
+                    if (PQ.XemTT == false) panelControl2.Visible = false;
+                    //if (PQ.InTT == false) bntIn.Visible = false;
+                    //if (PQ.TimTT == false) bntTim.Visible = false;
+                    if (PQ.ThemTT == false && PQ.SuaTT == false) bntLuu.Visible = false;
+                }
+            }
+            catch (Exception) { }
+        }
     }
 }

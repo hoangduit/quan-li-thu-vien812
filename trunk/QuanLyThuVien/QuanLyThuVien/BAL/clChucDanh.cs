@@ -35,10 +35,10 @@ namespace QuanLyThuVien.BAL
                     } 
                 }
             }
-            catch (Exception ex)
+            catch (Exception  )
             {
                 completed = false;
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return Ma;
         }
@@ -53,10 +53,10 @@ namespace QuanLyThuVien.BAL
                 conn.AddParameter("@TenCD", obj.TenCD);
                 completed = conn.ExecuteUpdate(Str, false);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 completed = false;
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return completed;
         }
@@ -79,10 +79,10 @@ namespace QuanLyThuVien.BAL
                     completed = 0;
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 completed = 2;
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return completed;
         }
@@ -93,9 +93,9 @@ namespace QuanLyThuVien.BAL
             {
                 tb = conn.ExecuteQuery("SELECT * FROM TV_ChucDanh WHERE MaCD=" + Ma);
             }
-            catch (Exception ex)
+            catch (Exception )
             { 
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return (tb.Rows.Count > 0);
         }
@@ -107,9 +107,9 @@ namespace QuanLyThuVien.BAL
                 string str = " SELECT Row_number() OVER( ORDER BY MaCD DESC) STT, MaCD= 'MCD00' + convert( nvarchar(200),MaCD),TenCD FROM TV_ChucDanh ";
                 tb = conn.ExecuteQuery(str);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return tb;
         }
@@ -124,9 +124,9 @@ namespace QuanLyThuVien.BAL
                     Tong = 0;
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
              return Tong;
         }
@@ -143,9 +143,9 @@ namespace QuanLyThuVien.BAL
                     obj.TenCD = tb.Rows[0]["TenCD"].ToString();
                 }
             }
-            catch (Exception ex)
+            catch (Exception )
             {
-                throw new Exception(ex.Message);
+                //throw new Exception(ex.Message);
             }
             return obj;
         } 

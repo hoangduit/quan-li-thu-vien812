@@ -126,23 +126,6 @@ namespace QuanLyThuVien.BAL
             }
             return (tb.Rows.Count > 0);
         }
-        public DataTable LayDS(Decimal MaCB)
-        {
-            DataTable tb = new DataTable();
-            try
-            {
-                string str = " SELECT        Row_number() OVER( ORDER BY MaTT DESC) STT, MaTT= 'MTT00' + convert( nvarchar(200),MaTT),   TV_ThaoTac.ToanQuyen, TV_ThaoTac.ThemTT, TV_ThaoTac.SuaTT, TV_ThaoTac.XoaTT, TV_ThaoTac.XemTT, TV_ThaoTac.TimTT, TV_ThaoTac.InTT, " +
-                                           " TV_ThaoTac.Khoa, TV_CanBo.TenCB, TV_From.TenGoi, TV_ThaoTac.MaTT " +
-                             " FROM          TV_CanBo RIGHT OUTER JOIN " +
-                                           " TV_ThaoTac LEFT OUTER JOIN   TV_From ON TV_ThaoTac.MaFrm = TV_From.MaFrm ON TV_CanBo.MaCB = TV_ThaoTac.MaCB WHERE TV_ThaoTac.MaCB=" + MaCB;
-                tb = conn.ExecuteQuery(str);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return tb;
-        }
         public Decimal Dem()
         {
             Decimal Tong = 0;
@@ -159,6 +142,37 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
             return Tong;
+        }
+        public DataTable  KiemTraFrom(Decimal From, Decimal MaNV)
+        {
+            DataTable tb = new DataTable();
+            try
+            {
+                tb = conn.ExecuteQuery("SELECT * FROM TV_ThaoTac WHERE MaFrm=" + From + " AND MaCB=" + MaNV);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tb;
+        }
+
+        public DataTable LayDS(Decimal MaCB)
+        {
+            DataTable tb = new DataTable();
+            try
+            {
+                string str = " SELECT        Row_number() OVER( ORDER BY MaTT DESC) STT, MaTT= 'MTT00' + convert( nvarchar(200),MaTT),   TV_ThaoTac.ToanQuyen, TV_ThaoTac.ThemTT, TV_ThaoTac.SuaTT, TV_ThaoTac.XoaTT, TV_ThaoTac.XemTT, TV_ThaoTac.TimTT, TV_ThaoTac.InTT, " +
+                                           " TV_ThaoTac.Khoa, TV_CanBo.TenCB, TV_From.TenGoi, TV_ThaoTac.MaTT " +
+                             " FROM          TV_CanBo RIGHT OUTER JOIN " +
+                                           " TV_ThaoTac LEFT OUTER JOIN   TV_From ON TV_ThaoTac.MaFrm = TV_From.MaFrm ON TV_CanBo.MaCB = TV_ThaoTac.MaCB WHERE TV_ThaoTac.MaCB=" + MaCB;
+                tb = conn.ExecuteQuery(str);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return tb;
         }
         public clThaoTac LayDS_Ma(Decimal Ma)
         {
@@ -187,19 +201,6 @@ namespace QuanLyThuVien.BAL
             }
             return obj;
         }
-        public Boolean KiemTraFrom(Decimal From, Decimal MaNV)
-        {
-            DataTable tb = new DataTable();
-            try
-            {
-                tb = conn.ExecuteQuery("SELECT * FROM TV_ThaoTac WHERE MaFrm=" + From + " AND MaCB=" + MaNV);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return (tb.Rows.Count > 0);
-        }
         public DataTable LayDS_From()
         {
             DataTable tb = new DataTable();
@@ -214,5 +215,32 @@ namespace QuanLyThuVien.BAL
             }
             return tb;
         }
+        public clThaoTac Lay_From(Decimal From, Decimal MaNV)
+        {
+            DataTable tb = new DataTable();
+            clThaoTac obj = new clThaoTac();
+            try
+            {
+                tb = conn.ExecuteQuery("SELECT * FROM TV_ThaoTac WHERE MaFrm=" + From + " AND MaCB=" + MaNV);
+                if (tb.Rows.Count > 0)
+                {
+                    obj.MaTT = Decimal.Parse(tb.Rows[0]["MaTT"].ToString());
+                    obj.MaFrm = Decimal.Parse(tb.Rows[0]["MaFrm"].ToString());
+                    obj.ToanQuyen = Boolean.Parse(tb.Rows[0]["ToanQuyen"].ToString());
+                    obj.ThemTT = Boolean.Parse(tb.Rows[0]["ThemTT"].ToString());
+                    obj.SuaTT = Boolean.Parse(tb.Rows[0]["SuaTT"].ToString());
+                    obj.XoaTT = Boolean.Parse(tb.Rows[0]["XoaTT"].ToString());
+                    obj.XemTT = Boolean.Parse(tb.Rows[0]["XemTT"].ToString());
+                    obj.TimTT = Boolean.Parse(tb.Rows[0]["TimTT"].ToString());
+                    obj.InTT = Boolean.Parse(tb.Rows[0]["InTT"].ToString());
+                    obj.Khoa = Boolean.Parse(tb.Rows[0]["Khoa"].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return obj;
+        } 
     }
 }
