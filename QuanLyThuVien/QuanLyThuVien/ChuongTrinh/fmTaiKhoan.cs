@@ -50,7 +50,6 @@ namespace QuanLyThuVien.ChuongTrinh
             txtMaSo.Enabled = true;
             this.XoaTxt();
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
-
         }
         private void bntSua_Click(object sender, EventArgs e)
         {
@@ -78,9 +77,9 @@ namespace QuanLyThuVien.ChuongTrinh
         {
             if (Ma > 0)
             {
-                frmThaoTac frm = new frmThaoTac();
-                frm.ShowDialog();
                 Ham.MaCB = Ma;
+                frmThaoTac frm = new frmThaoTac();
+                frm.ShowDialog(); 
             }
         }
         private void bntTaiLai_Click(object sender, EventArgs e)
