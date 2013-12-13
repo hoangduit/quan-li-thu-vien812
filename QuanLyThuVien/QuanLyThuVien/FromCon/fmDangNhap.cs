@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QuanLyThuVien.BAL; 
+using QuanLyThuVien.BAL;
 namespace QuanLyThuVien.ChuongTrinh
 {
     public partial class fmDangNhap : Form
@@ -22,25 +22,39 @@ namespace QuanLyThuVien.ChuongTrinh
         private void bntDN_Click(object sender, EventArgs e)
         {
             DataTable tb = ojp.DangNhap(txtTK.Text, txtMK.Text);
-            if (  txtTK.Text == "")
+            if (txtTK.Text == "")
             {
                 lbThongBao.Text = "Tài khoản không được rổng";
                 txtTK.Focus();
                 return;
             }
-            if (  txtMK.Text == "")
+            if (txtMK.Text == "")
             {
                 lbThongBao.Text = "Mật khẩu không được rổng";
                 txtMK.Focus();
                 return;
             }
-            if (tb.Rows.Count > 0)
+            try
             {
-                layUser(Convert.ToDecimal ( tb.Rows[0]["MaCB"].ToString()));
-                this.Close();
+                if (Convert.ToBoolean(tb.Rows[0]["TrangThai"]) == false)
+                {
+                    lbThongBao.Text = "Tài khoản đã bị khóa";
+                    txtMK.Focus();
+                    return;
+                }
+                if (tb.Rows.Count > 0)
+                {
+                    layUser(Convert.ToDecimal(tb.Rows[0]["MaCB"].ToString()));
+                    this.Close();
+                }
+                else { lbThongBao.Text = "Không đúng vui lòng nhập lại"; txtTK.Focus(); }
             }
-            else { lbThongBao.Text = "Không đúng vui lòng nhập lại"; txtTK.Focus(); }
-        } 
+            catch (Exception)
+            {
+                lbThongBao.Text = "Không đăng nhập được vui lòng thử lại";
+            }
+
+        }
         private void bntThoat_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,6 +62,6 @@ namespace QuanLyThuVien.ChuongTrinh
         private void fmDangNhap_Load(object sender, EventArgs e)
         {
             lbThongBao.Text = "";
-        } 
+        }
     }
 }

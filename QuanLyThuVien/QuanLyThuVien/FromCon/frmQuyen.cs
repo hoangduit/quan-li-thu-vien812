@@ -40,6 +40,41 @@ namespace QuanLyThuVien.FromCon
         {
             Ham.KhungTB(4, "Thao tác thêm ", pnThongBao, lbThongBao); 
         }
+
+        private void panelControl2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panelControl1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void cbAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtTenQ_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnThongBao_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lbThongBao_Click(object sender, EventArgs e)
+        {
+
+        }
         
     }
 }

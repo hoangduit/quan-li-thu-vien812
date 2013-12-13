@@ -10,21 +10,19 @@ using System.Windows.Forms;
 using QuanLyThuVien.BAL;
 namespace QuanLyThuVien.ChuongTrinh
 {
-    public partial class fmChucDanh : UserControl
+    public partial class fmTrangThai : UserControl
     {
-        public fmChucDanh()
+        public fmTrangThai()
         {
             InitializeComponent();
-
         }
         Int16 TrangThai = 0;
         Decimal Ma = 0;
-        Decimal MaNV = Ham.MaNV;
-        clChucDanh clChucDanh = new clChucDanh();
-        clChucDanh ojp = new clChucDanh();
-        private void fmChucDanh_Load(object sender, EventArgs e)
+        clTrangThai clTrangThai = new clTrangThai();
+        clTrangThai ojp = new clTrangThai();
+        private void fmTrangThai_Load(object sender, EventArgs e)
         {
-            Ham.ThemLuocSu(MaNV, "Chúc Danh", "Xem", "");
+            Ham.ThemLuocSu(Ham.MaNV, "Trạng Thái Sách", "Xem", "");
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
             this.LoadGV();
             this.LoadQuyen();
@@ -34,26 +32,28 @@ namespace QuanLyThuVien.ChuongTrinh
             TrangThai = 1;
             this.LoadTxt();
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
+  
         }
         private void bntSua_Click(object sender, EventArgs e)
         {
             TrangThai = 2;
             this.LoadTxt();
             Ham.LoadBnt(TrangThai, pnKhungThem, bntThem, bntLuu, bntXoa, bntSua, bntTaiLai, pnThongBao, lbThongBao);
+ 
         }
         private void bntLuu_Click(object sender, EventArgs e)
         {
-            if (txtTenCD.Text == "")
+            if (txtTen.Text == "")
             {
-                Ham.KhungTB(3, "Chúc danh không được rổng", pnThongBao, lbThongBao);
-                txtTenCD.Focus();
+                Ham.KhungTB(3, "Tên trạng thái không được rổng", pnThongBao, lbThongBao);//
+                txtTen.Focus();
                 return;
             }
             if (TrangThai == 1)
                 this.Them();
             if (TrangThai == 2)
                 this.Sua();
-            this.LoadGV(); 
+            this.LoadGV();
             this.XoaTxt();
         }
         private void bntXoa_Click(object sender, EventArgs e)
@@ -74,62 +74,71 @@ namespace QuanLyThuVien.ChuongTrinh
         {
             string a = gridView1.GetFocusedRowCellValue(clMa).ToString();
             bntXoa.Enabled = true;
-            Ma = Convert.ToDecimal(a.Replace("MCD00", ""));
+            Ma = Convert.ToDecimal(a.Replace("TrT00", ""));
             if (TrangThai == 2)
                 this.LoadTxt();
         }
         private void LoadGV()
         {
-            gridControl1.DataSource = clChucDanh.LayDS();
-            gridView1.GroupPanelText = "Tổng số dòng là: " + clChucDanh.Dem();
+            gridControl1.DataSource = clTrangThai.LayDS();
+            gridView1.GroupPanelText = "Tổng số dòng là: " + clTrangThai.Dem();
 
         }
         private void LoadTxt()
         {
-            ojp = clChucDanh.LayDS_MaCD(Ma);
-            txtTenCD.Text = ojp.TenCD;
+            ojp = clTrangThai.LayDS_Ma(Ma);
+            txtTen.Text = ojp.TenTT;
+            txtGhiChu.Text = ojp.GhiChu;
+            cbTrangThai.Checked = ojp.TrangThai;
+
         }
         private void XoaTxt()
         {
-            txtTenCD.Text = "";
+            txtTen.Text = "";
+            txtGhiChu.Text = "";
+            cbTrangThai.Checked = false;
         }
         private void Them()
         {
-             
-            clChucDanh.TenCD = txtTenCD.Text;
-            if (clChucDanh.Them(clChucDanh) > 0)
+
+            clTrangThai.TenTT = txtTen.Text;
+            clTrangThai.GhiChu = txtGhiChu.Text;
+            clTrangThai.TrangThai = cbTrangThai.Checked;
+            if (clTrangThai.Them(clTrangThai) > 0)
             {
-                Ham.KhungTB(1, "Thêm thành công", pnThongBao, lbThongBao);
-                Ham.ThemLuocSu(MaNV, "Thêm chúc danh: " + txtTenCD.Text, "Thêm", "");
+                Ham.KhungTB(1, "Thêm thành công", pnThongBao, lbThongBao);//
+                Ham.ThemLuocSu(Ham.MaNV, "Thêm trạng thái: " + txtTen.Text, "Thêm", "");
             }
             else
                 Ham.KhungTB(2, "Thêm thất bại", pnThongBao, lbThongBao);
         }
         private void Sua()
         {
-          
-            clChucDanh.TenCD = txtTenCD.Text;
-            clChucDanh.MaCD = Ma;
-            if (clChucDanh.Sua(clChucDanh) == true)
+
+            clTrangThai.TenTT = txtTen.Text;
+            clTrangThai.MaTT = Ma;
+            clTrangThai.GhiChu = txtGhiChu.Text;
+            clTrangThai.TrangThai = cbTrangThai.Checked;
+            if (clTrangThai.Sua(clTrangThai) == true)
             {
-                Ham.KhungTB(1, "Thay đổi thành công", pnThongBao, lbThongBao);
-                Ham.ThemLuocSu(MaNV, "Thay đổi chúc danh thành: " + txtTenCD.Text, "Thay đổi", "");
+                Ham.KhungTB(1, "Thay đổi thành công", pnThongBao, lbThongBao);//
+                Ham.ThemLuocSu(Ham.MaNV, "Thay đổi trạng thái " + Ma + " thành: " + txtTen.Text, "Thay đổi", "");
             }
             else
                 Ham.KhungTB(2, "Thay đổi thất bại", pnThongBao, lbThongBao);
-        } 
+        }
         private void Xoa()
         {
             int Kq = 0;
-            Kq = clChucDanh.Xoa(Ma);
+            Kq = clTrangThai.Xoa(Ma);
             if (Kq == 0)
                 Ham.KhungTB(2, "Xóa thất bại", pnThongBao, lbThongBao);
             if (Kq == 1)
             {
                 Ham.KhungTB(1, "Xóa thành công", pnThongBao, lbThongBao);
-                Ham.ThemLuocSu(MaNV, "Xóa chúc danh: " + ojp.TenCD, "Xóa", "");
+                Ham.ThemLuocSu(Ham.MaNV, "Xóa trạng thái: " + ojp.TenTT, "Xóa", "");//
             }
-            if (Kq == 3)
+            if (Kq == 2)
                 Ham.KhungTB(3, "Đang được sử dụng không thể xóa", pnThongBao, lbThongBao);
         }
         private void LoadQuyen()
@@ -141,7 +150,7 @@ namespace QuanLyThuVien.ChuongTrinh
                 PQ = PQ.Lay_From(1, Ham.MaNV);
                 if (PQ.ToanQuyen != true && Ham.qAdmin != 1)
                 {
-                    if (PQ.ThemTT == false) bntThem.Visible = false; 
+                    if (PQ.ThemTT == false) bntThem.Visible = false;
                     if (PQ.SuaTT == false) bntSua.Visible = false;
                     if (PQ.XoaTT == false) bntXoa.Visible = false;
                     if (PQ.XemTT == false) panelControl2.Visible = false;
@@ -150,7 +159,7 @@ namespace QuanLyThuVien.ChuongTrinh
                     if (PQ.ThemTT == false && PQ.SuaTT == false) bntLuu.Visible = false;
                 }
             }
-            catch (Exception) {  } 
+            catch (Exception) { }
         }
     }
 }

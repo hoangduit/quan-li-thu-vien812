@@ -70,12 +70,12 @@ namespace QuanLyThuVien.BAL
             try
             {
                 string Str = "UPDATE TV_CanBo SET    TenCB=@TenCB, DiaChi=@DiaChi, SDT=@SDT, Mail=@Mail, MaCD=@MaCD, MaQuyen=@MaQuyen, TrangThai=@TrangThai, GioiTinh=@GioiTinh WHERE MaCB = @MaCB ";
-                conn.AddParameter("@MaCB", obj.MaCB); 
+                conn.AddParameter("@MaCB", obj.MaCB);
                 conn.AddParameter("@TenCB", obj.TenCB);
                 conn.AddParameter("@DiaChi", obj.DiaChi);
                 conn.AddParameter("@SDT", obj.SDT);
                 conn.AddParameter("@Mail", obj.Mail);
-                conn.AddParameter("@MaCD", obj.MaCD); 
+                conn.AddParameter("@MaCD", obj.MaCD);
                 conn.AddParameter("@MaQuyen", obj.MaQuyen);
                 conn.AddParameter("@TrangThai", obj.TrangThai);
                 conn.AddParameter("@GioiTinh", obj.GioiTinh);
@@ -132,7 +132,21 @@ namespace QuanLyThuVien.BAL
             DataTable tb = new DataTable();
             try
             {
-                tb = conn.ExecuteQuery("SELECT * FROM TV_CanBo WHERE MaSoCB='" + MaSoCB+"'");
+                tb = conn.ExecuteQuery("SELECT * FROM TV_CanBo WHERE MaSoCB='" + MaSoCB + "'");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return (tb.Rows.Count > 0);
+        }
+        public Boolean KT_MatKhau(Decimal MaNV, String MK)
+        {
+            DataTable tb = new DataTable();
+            try
+            {
+                tb = conn.ExecuteQuery("SELECT * FROM TV_CanBo WHERE MaCB='" + MaNV + "' AND MatKhau='" + MK + "'");
+
             }
             catch (Exception ex)
             {
@@ -145,11 +159,11 @@ namespace QuanLyThuVien.BAL
             DataTable tb = new DataTable();
             try
             {
-                string str = " SELECT        Row_number() OVER( ORDER BY MaCB DESC) STT, MaCB= 'MCB00' + convert( nvarchar(200),MaCB), TV_CanBo.MaSoCB, TV_CanBo.TenCB, TV_ChucDanh.TenCD, TV_CanBo.MaSoCB, TV_CanBo.DiaChi, TV_CanBo.SDT, TV_CanBo.Mail, "+
-			                               " TV_CanBo.TaiKhoan, TV_CanBo.MatKhau, TV_Quyen.TenQ,     "+
-				                           " CASE TV_Quyen.Admin when '1' Then N'Quản Trị' ELSE N'Người Dùng' END AS  Admin , "+
-                                           " CASE TV_CanBo.GioiTinh when 'True' Then N'Nam' ELSE N'Nữ' END AS  GioiTinh , "+
-                                           " CASE    TV_CanBo.TrangThai when '1' Then N'Đang dùng' ELSE N'Đã khóa' END AS  TrangThai  "+
+                string str = " SELECT        Row_number() OVER( ORDER BY MaCB DESC) STT, MaCB= 'MCB00' + convert( nvarchar(200),MaCB), TV_CanBo.MaSoCB, TV_CanBo.TenCB, TV_ChucDanh.TenCD, TV_CanBo.MaSoCB, TV_CanBo.DiaChi, TV_CanBo.SDT, TV_CanBo.Mail, " +
+                                           " TV_CanBo.TaiKhoan, TV_CanBo.MatKhau, TV_Quyen.TenQ,     " +
+                                           " CASE TV_Quyen.Admin when '1' Then N'Quản Trị' ELSE N'Người Dùng' END AS  Admin , " +
+                                           " CASE TV_CanBo.GioiTinh when 'True' Then N'Nam' ELSE N'Nữ' END AS  GioiTinh , " +
+                                           " CASE    TV_CanBo.TrangThai when '1' Then N'Đang dùng' ELSE N'Đã khóa' END AS  TrangThai  " +
                              " FROM          TV_CanBo LEFT OUTER JOIN   TV_Quyen ON TV_CanBo.MaQuyen = TV_Quyen.MaQ LEFT OUTER JOIN  TV_ChucDanh ON TV_CanBo.MaCD = TV_ChucDanh.MaCD ";
                 tb = conn.ExecuteQuery(str);
             }
@@ -159,13 +173,12 @@ namespace QuanLyThuVien.BAL
             }
             return tb;
         }
-
         public DataTable DangNhap(String TK, String MK)
         {
             DataTable tb = new DataTable();
             try
             {
-                string str = String.Format(" SELECT * FROM TV_CanBo WHERE TaiKhoan='{0}' AND MatKhau='{1}' ",TK,MK);
+                string str = String.Format(" SELECT * FROM TV_CanBo WHERE TaiKhoan='{0}' AND MatKhau='{1}' ", TK, MK);
                 tb = conn.ExecuteQuery(str);
             }
             catch (Exception ex)
@@ -173,6 +186,25 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
             return tb;
+        }
+        public Boolean DoiMatKhau(Decimal MaNV, String MK, String MKM)
+        {
+            if (KT_MatKhau(MaNV, MK) == false) { return false; }
+            bool completed = false;
+            //True - Thanh cong, False - Khong thuc hien duoc
+            try
+            {
+                string Str = "UPDATE TV_CanBo SET  MatKhau=@MatKhau WHERE MaCB = @MaCB ";
+                conn.AddParameter("@MatKhau", MKM);
+                conn.AddParameter("@MaCB", MaNV);
+                completed = conn.ExecuteUpdate(Str, false);
+            }
+            catch (Exception ex)
+            {
+                completed = false;
+                throw new Exception(ex.Message);
+            }
+            return completed;
         }
         public Decimal Dem()
         {
@@ -190,7 +222,7 @@ namespace QuanLyThuVien.BAL
                 throw new Exception(ex.Message);
             }
             return Tong;
-        } 
+        }
         public clCanBo LayDS_MaCB(Decimal Ma)
         {
             DataTable tb = new DataTable();
@@ -221,14 +253,13 @@ namespace QuanLyThuVien.BAL
             }
             return obj;
         }
-
         public DataTable LayCB(Decimal Ma)
         {
             DataTable tb = new DataTable();
             try
             {
                 string str = " SELECT        Row_number() OVER( ORDER BY MaCB DESC) STT, MaCB= 'MCB00' + convert( nvarchar(200),MaCB), TV_CanBo.MaSoCB, TV_CanBo.TenCB, TV_ChucDanh.TenCD, TV_CanBo.MaSoCB, TV_CanBo.DiaChi, TV_CanBo.SDT, TV_CanBo.Mail, " +
-                                           " TV_CanBo.TaiKhoan, TV_CanBo.MatKhau, TV_Quyen.TenQ,     " +
+                                           " TV_CanBo.TaiKhoan, TV_CanBo.MatKhau, TV_Quyen.TenQ, Admin AS qAdmin ,   " +
                                            " CASE TV_Quyen.Admin when '1' Then N'Quản Trị' ELSE N'Người Dùng' END AS  Admin , " +
                                            " CASE TV_CanBo.GioiTinh when 'True' Then N'Nam' ELSE N'Nữ' END AS  GioiTinh , " +
                                            " CASE    TV_CanBo.TrangThai when '1' Then N'Đang dùng' ELSE N'Đã khóa' END AS  TrangThai  " +
