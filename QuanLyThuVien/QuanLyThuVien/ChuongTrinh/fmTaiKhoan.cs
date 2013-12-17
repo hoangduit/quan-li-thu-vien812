@@ -37,12 +37,12 @@ namespace QuanLyThuVien.ChuongTrinh
         }
         private void bntChucDanh_Click(object sender, EventArgs e)
         {
-            frmChucDanh frm = new frmChucDanh();
+            fmChucDanh frm = new fmChucDanh();
             frm.ShowDialog();
         }
         private void bntQuyen_Click(object sender, EventArgs e)
         {
-            frmQuyen frm = new frmQuyen();
+            fmQuyen frm = new fmQuyen();
             frm.ShowDialog();
         }
         private void bntThem_Click(object sender, EventArgs e)

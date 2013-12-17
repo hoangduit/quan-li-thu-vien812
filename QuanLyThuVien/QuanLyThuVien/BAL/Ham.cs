@@ -11,7 +11,7 @@ namespace QuanLyThuVien.BAL
     {
         static public Decimal MaNV { get; set; }
         static public Decimal MaCB { get; set; }
-        static public Decimal qAdmin { get; set; } 
+        static public Decimal qAdmin { get; set; }
         static public void ThemLuocSu(Decimal MaCB, String TenFrom, String ThaoTac, String TomTac)
         {
             try
@@ -25,7 +25,7 @@ namespace QuanLyThuVien.BAL
                 ojpLS.TomTac = TomTac;
                 LuocSu = ojpLS.Them(ojpLS);
             }
-            catch (Exception )
+            catch (Exception)
             {
                 //throw new Exception(ex.Message);
             }
@@ -77,9 +77,10 @@ namespace QuanLyThuVien.BAL
                 pnThongBao.BackColor = System.Drawing.Color.DarkOrange;
             if (TrangThai == 4)// Khác màu đất
                 pnThongBao.BackColor = System.Drawing.Color.DarkGray;
-            
+
             lbThongBao.Appearance.ForeColor = System.Drawing.Color.White;
             lbThongBao.Text = str;
         }
     }
 }
+

@@ -150,7 +150,19 @@ namespace QuanLyThuVien.ChuongTrinh
                     if (PQ.ThemTT == false && PQ.SuaTT == false) bntLuu.Visible = false;
                 }
             }
-            catch (Exception) {  } 
+            catch (Exception) {  }
+        }
+
+        private void pnKhungThem_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void pnThongBao_Paint(object sender, PaintEventArgs e)
+        {
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

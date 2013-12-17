@@ -14,7 +14,8 @@ public class ClConn
     //Ham xay dung  
     public ClConn()
     {
-        sqlConn = new SqlConnection("Data Source=hoang-pc;Initial Catalog=QuanLyThuVien;Integrated Security=True");
+        //sqlConn = new SqlConnection("Data Source=hoang-pc;Initial Catalog=QuanLyThuVien;Integrated Security=True");
+        sqlConn = new SqlConnection("Data Source=KIEUDIEM;Initial Catalog=QuanLyThuVien;Integrated Security=True");
         //Khoi tao doi tuong SqlCommand
         sqlCmd = new SqlCommand();
     }
