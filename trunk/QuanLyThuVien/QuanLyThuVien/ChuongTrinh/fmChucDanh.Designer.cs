@@ -75,6 +75,7 @@
             this.pnKhungThem.Name = "pnKhungThem";
             this.pnKhungThem.Size = new System.Drawing.Size(581, 56);
             this.pnKhungThem.TabIndex = 0;
+            this.pnKhungThem.Paint += new System.Windows.Forms.PaintEventHandler(this.pnKhungThem_Paint);
             // 
             // txtTenCD
             // 
@@ -196,6 +197,7 @@
             this.gridView1,
             this.layoutView1,
             this.gridView2});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
@@ -269,6 +271,7 @@
             this.pnThongBao.Size = new System.Drawing.Size(581, 22);
             this.pnThongBao.TabIndex = 7;
             this.pnThongBao.Visible = false;
+            this.pnThongBao.Paint += new System.Windows.Forms.PaintEventHandler(this.pnThongBao_Paint);
             // 
             // lbThongBao
             // 
